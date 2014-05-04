@@ -10,7 +10,7 @@ CPPFLAGS += $(PYTHON_INCLUDE_DIR)
 LDFLAGS += $(PYTHON_FLAGS)
 CFLAGS += -Wall
 
-all: _swig_adapter.so filtertest
+all: _swig_adapter.so babelpy
 
 swig_adapter.c: swig_adapter.i
 	swig -python -o $@ swig_adapter.i
@@ -21,12 +21,12 @@ swig_adapter.o: swig_adapter.c
 _swig_adapter.so: swig_adapter.o
 	$(CC) -shared -o $@ $?
 
-filtertest.o: filtertest.c
+babelpy.o: babelpy.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(AM_CPPFLAGS) -c -o $@ $<
 
-filtertest: filtertest.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ filtertest.o $(LIBS)
+babelpy: babelpy.o
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $< $(LIBS)
 
 .PHONY: clean
 clean:
-	rm -f *.o *.so *~ swig_adapter.c swig_adapter.py swig_adapter.o swig_adapter.so filtertest
+	rm -f *.o *.so *~ swig_adapter.c swig_adapter.py swig_adapter.o swig_adapter.so babelpy

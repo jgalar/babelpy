@@ -1,5 +1,5 @@
 /*
- * filtertest.c
+ * babelpy.c
  *
  * Python-based CTF event filtering demo
  *
