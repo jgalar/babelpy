@@ -16,13 +16,13 @@ swig_adapter.c: swig_adapter.i
 	swig -python -o $@ swig_adapter.i
 
 swig_adapter.o: swig_adapter.c
-	$(CC) -fpic $(CPPFLAGS) $(CFLAGS) $(AM_CPPFLAGS) -c -o $@ $<
+	$(CC) -fpic $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
 _swig_adapter.so: swig_adapter.o
 	$(CC) -shared -o $@ $?
 
 babelpy.o: babelpy.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(AM_CPPFLAGS) -c -o $@ $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
 babelpy: babelpy.o
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $< $(LIBS)
